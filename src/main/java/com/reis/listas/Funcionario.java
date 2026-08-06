@@ -1,0 +1,46 @@
+package com.reis.listas;
+
+public class Funcionario {
+    //private UUID uuid;
+    private int idFuncionario;
+    private String nome;
+    private Double salario;
+
+    public Funcionario(int idFuncionario, String nome, Double salario) {
+        this.nome = nome;
+        this.salario = salario;
+        this.idFuncionario = idFuncionario;
+    }
+    public void aumentoSalario(Double aumento){
+        salario = salario * aumento;
+    }
+
+    public int getId() {
+        return idFuncionario;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(Double salario) {
+        this.salario = salario;
+    }
+
+    @Override
+    public String toString() {
+        return "Funcionario{" +
+                "id=" + idFuncionario +
+                ", nome='" + nome + '\'' +
+                ", salario=" + salario +
+                '}';
+    }
+}
