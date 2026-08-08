@@ -12,13 +12,13 @@ public class Exercise {
         int opcao;
 
         while (true) {
-            System.out.println("1 - Cadastrar | 2 - Listar | 0 - Sair");
+            System.out.println("1 - Cadastrar | 2 - Listar | 3 - Aumento | 0 - Sair");
             System.out.print("Escolha uma opção: ");
-            opcao = scanner.nextInt(); // <--- ISSO ATUALIZA A VARIÁVEL E FAZ O PROGRAMA ESPERAR O USUÁRIO
+            opcao = scanner.nextInt();
 
             if (opcao == 0) {
                 System.out.println("Saindo do sistema...");
-                break; // Sai do while(true)
+                break;
             }
             switch (opcao) {
                 case 1:
@@ -26,6 +26,9 @@ public class Exercise {
                     break;
                 case 2:
                     MetodosFuncionario.listarFuncionarios();
+                    break;
+                case 3:
+                    MetodosFuncionario.aumentarSalrio();
                     break;
                 default:
                     System.out.println("Opção inválida!");

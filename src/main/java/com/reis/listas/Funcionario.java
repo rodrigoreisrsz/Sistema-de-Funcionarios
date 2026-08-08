@@ -12,7 +12,7 @@ public class Funcionario {
         this.idFuncionario = idFuncionario;
     }
     public void aumentoSalario(Double aumento){
-        salario = salario * aumento;
+        salario = salario + (salario * aumento / 100);
     }
 
     public int getId() {

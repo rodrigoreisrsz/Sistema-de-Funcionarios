@@ -1,5 +1,10 @@
 package com.reis.listas;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,7 +14,7 @@ public class MetodosFuncionario {
     static List<Funcionario> funcionarios = new ArrayList<>();
 
     public static void cadastrar(){
-
+        LocalDateTime agora = LocalDateTime.now();
         Scanner scanner = new Scanner(System.in);
         // quantidade de funcionarios para cadastrar
         System.out.println("Digite a quantidade de funcionarios: ");
@@ -27,21 +32,28 @@ public class MetodosFuncionario {
                 if(idExiste){
                     throw new RuntimeException("Este id já existe na lista.");
                 }
+
                 System.out.println("Digite o nome: ");
                 scanner.nextLine();
                 String nome = scanner.nextLine();
                 System.out.println("Salario: ");
                 Double salario = scanner.nextDouble();
                 funcionarios.add(new Funcionario(id, nome, salario));
-                System.out.println("Funcionario " + nome + " cadastrado");
+                // data/hora atual
+
+                // formatar a data
+                DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+                String dataCadastro = formatterData.format(agora);
+                // formatar a hora
+                DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
+                String horaCadastro = formatterHora.format(agora);
+                System.out.println("Funcionario " + nome + " cadastrado em " + dataCadastro + " ás " + horaCadastro);
             }catch(RuntimeException e){
                 System.out.println("Erro no cadastro");
             }
-
     }
-
     }
-    public static void aumentarSalrio(double porcentagem){
+    public static void aumentarSalrio(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Digite o id do funcionario para o aumento: ");
         int idPesquisa = scanner.nextInt();
@@ -51,8 +63,15 @@ public class MetodosFuncionario {
         }
         else{
             System.out.println("Digite a porcentagem de aumento: ");
-            porcentagem = scanner.nextDouble();
+            double porcentagem = scanner.nextDouble();
             funcionario.aumentoSalario(porcentagem);
+            LocalDateTime agora = LocalDateTime.now();
+            DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+            String dataAumento = formatterData.format(agora);
+            // formatar a hora
+            DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
+            String horaAumento = formatterHora.format(agora);
+            System.out.println("Funcionario(a) " + funcionario.getNome() + " salario reajustado em " + dataAumento + " ás " + horaAumento);
         }
     }
     public static List<Funcionario> listarFuncionarios(){
