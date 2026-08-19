@@ -1,16 +1,58 @@
 package com.reis.logicadeprogramacao.entities;
 
+import com.reis.logicadeprogramacao.exception.IdInexistenteException;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class Produtos {
     private String nome;
+    private int id;
+    private double preco;
+
+    static List<Produtos> produtos = new ArrayList<>();
+    static Scanner sc = new Scanner(System.in);
 
     public Produtos(){
 
     }
 
-    public Produtos(String nome) {
+    public Produtos(String nome, int id, double preco) {
         this.nome = nome;
+        this.id = id;
+        this.preco = preco;
+    }
+    public static Produtos adicionarProduto(){
+        System.out.println("Digite o nome do produto");
+        String nomeProduto = sc.nextLine();
+        System.out.println("Digite o ID do produto");
+        int id = sc.nextInt();
+        System.out.println("Digite o preço");
+        double preco = sc.nextDouble();
+        Produtos produto = new Produtos(nomeProduto, id, preco);
+        produtos.add(produto);
+        return produto;
     }
 
+    public static void listarProdutos(){
+        for(Produtos produto: produtos){
+            System.out.println("Produtos : " + produto.getNome());
+        }
+    }
+    public static void escolherProduto() throws IdInexistenteException{
+        System.out.println("Escolha um produto pelo ID: ");
+        int escolha = sc.nextInt();
+        for(Produtos produto: produtos){
+            if(escolha == produto.getId()){
+                System.out.println(produto);
+            }else{
+                throw new IdInexistenteException();
+            }
+        }
+
+
+    }
     public String getNome() {
         return nome;
     }
@@ -18,11 +60,24 @@ public class Produtos {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    public int getId(){
+        return id;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
 
     @Override
-    public String toString() {
+    public String
+
+    toString() {
         return "Produtos{" +
                 "nome='" + nome + '\'' +
+                ", id=" + id +
+                ", preco=" + preco +
                 '}';
     }
+
+
 }
