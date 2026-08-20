@@ -3,6 +3,7 @@ package com.reis.logicadeprogramacao.entities;
 import com.reis.logicadeprogramacao.exception.IdInexistenteException;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -41,8 +42,16 @@ public class Produtos {
         }
     }
     public static void escolherProduto() throws IdInexistenteException{
-        System.out.println("Escolha um produto pelo ID: ");
-        int escolha = sc.nextInt();
+
+        int escolha = 0;
+        do{
+            try{
+                System.out.println("Escolha um produto pelo ID: ");
+                escolha = sc.nextInt();
+            }catch(InputMismatchException e){
+                System.out.println("Digite apenas números");
+            }
+        }while(escolha == 0);
         for(Produtos produto: produtos){
             if(escolha == produto.getId()){
                 System.out.println(produto);
@@ -50,6 +59,9 @@ public class Produtos {
                 throw new IdInexistenteException();
             }
         }
+
+
+
 
 
     }
