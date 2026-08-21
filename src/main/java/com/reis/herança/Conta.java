@@ -1,6 +1,6 @@
 package com.reis.herança;
 
-public class Conta {
+public abstract class Conta {
     private String nome;
     protected Double balance;
 
@@ -25,6 +25,10 @@ public class Conta {
         return balance;
     }
 
+
+    public void deposito(double valor){
+        balance += valor;
+    }
 
     public void saque(double saque){
         balance -= saque + 5.0;

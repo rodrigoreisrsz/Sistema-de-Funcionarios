@@ -2,7 +2,7 @@ package com.reis.herança;
 
 public class Main {
     public static void main(String[] args) {
-        Conta acc = new Conta("Rd", 0.0);
+
         BussinesAccount bacc = new BussinesAccount("Ray", 0.0, 400 );
 
         //UPCASTING
